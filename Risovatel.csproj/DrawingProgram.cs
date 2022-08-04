@@ -42,6 +42,9 @@ namespace RefactorMe
             Drawer.DrawLineAtAngle(Pens.Yellow, sz * 0.04f * Math.Sqrt(2), angle + Math.PI / 4);
             Drawer.DrawLineAtAngle(Pens.Yellow, sz * 0.375f, angle + Math.PI);
             Drawer.DrawLineAtAngle(Pens.Yellow, sz * 0.375f - sz * 0.04f, angle + Math.PI / 2);
+            
+            Drawer.Change(sz * 0.04f, angle - Math.PI);
+            Drawer.Change(sz * 0.04f * Math.Sqrt(2), angle + 3 * Math.PI / 4);
         }
     }
 
@@ -53,36 +56,17 @@ namespace RefactorMe
             Drawer.Initialize(graphics);
 
             var sz = Math.Min(wight, height);
-
             var diagonalLength = Math.Sqrt(2) * (sz * 0.375f + sz * 0.04f) / 2;
             var x0 = (float)(diagonalLength * Math.Cos(Math.PI / 4 + Math.PI)) + wight / 2f;
             var y0 = (float)(diagonalLength * Math.Sin(Math.PI / 4 + Math.PI)) + height / 2f;
+            var angles = new[] { 0, -Math.PI / 2, Math.PI, Math.PI / 2};
 
             Drawer.SetPosition(x0, y0);
 
-            //Рисуем 1-ую сторону
-            Drawer.DrawSide(sz, 0);
-
-            Drawer.Change(sz * 0.04f, -Math.PI);
-            Drawer.Change(sz * 0.04f * Math.Sqrt(2), 3 * Math.PI / 4);
-
-            //Рисуем 2-ую сторону
-            Drawer.DrawSide(sz, -Math.PI / 2);
-
-            Drawer.Change(sz * 0.04f, -Math.PI / 2 - Math.PI);
-            Drawer.Change(sz * 0.04f * Math.Sqrt(2), -Math.PI / 2 + 3 * Math.PI / 4);
-
-            //Рисуем 3-ю сторону
-            Drawer.DrawSide(sz, Math.PI);
-
-            Drawer.Change(sz * 0.04f, Math.PI - Math.PI);
-            Drawer.Change(sz * 0.04f * Math.Sqrt(2), Math.PI + 3 * Math.PI / 4);
-
-            //Рисуем 4-ую сторону
-            Drawer.DrawSide(sz, Math.PI / 2);
-
-            Drawer.Change(sz * 0.04f, Math.PI / 2 - Math.PI);
-            Drawer.Change(sz * 0.04f * Math.Sqrt(2), Math.PI / 2 + 3 * Math.PI / 4);
+            foreach (var angle in angles)
+            {
+                Drawer.DrawSide(sz, angle);
+            }
         }
     }
 }
