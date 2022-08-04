@@ -20,9 +20,8 @@ namespace RefactorMe
         public static void SetPosition(float x0, float y0)
         {_x = x0; _y = y0;}
 
-        public static void DrawLineAtAngle(Pen pen, double length, double angle)
+        private static void DrawLineAtAngle(Pen pen, double length, double angle)
         {
-            //Делает шаг длиной dlina в направлении ugol и рисует пройденную траекторию
             var x1 = (float)(_x + length * Math.Cos(angle));
             var y1 = (float)(_y + length * Math.Sin(angle));
             _graphics.DrawLine(pen, _x, _y, x1, y1);
@@ -30,7 +29,7 @@ namespace RefactorMe
             _y = y1;
         }
 
-        public static void Change(double length, double angle)
+        private static void Change(double length, double angle)
         {
             _x = (float)(_x + length * Math.Cos(angle)); 
             _y = (float)(_y + length * Math.Sin(angle));
@@ -38,13 +37,13 @@ namespace RefactorMe
 
         public static void DrawSide(int sz, double angle)
         {
-            Drawer.DrawLineAtAngle(Pens.Yellow, sz * 0.375f, angle);
-            Drawer.DrawLineAtAngle(Pens.Yellow, sz * 0.04f * Math.Sqrt(2), angle + Math.PI / 4);
-            Drawer.DrawLineAtAngle(Pens.Yellow, sz * 0.375f, angle + Math.PI);
-            Drawer.DrawLineAtAngle(Pens.Yellow, sz * 0.375f - sz * 0.04f, angle + Math.PI / 2);
+            DrawLineAtAngle(Pens.Yellow, sz * 0.375f, angle);
+            DrawLineAtAngle(Pens.Yellow, sz * 0.04f * Math.Sqrt(2), angle + Math.PI / 4);
+            DrawLineAtAngle(Pens.Yellow, sz * 0.375f, angle + Math.PI);
+            DrawLineAtAngle(Pens.Yellow, sz * 0.375f - sz * 0.04f, angle + Math.PI / 2);
             
-            Drawer.Change(sz * 0.04f, angle - Math.PI);
-            Drawer.Change(sz * 0.04f * Math.Sqrt(2), angle + 3 * Math.PI / 4);
+            Change(sz * 0.04f, angle - Math.PI);
+            Change(sz * 0.04f * Math.Sqrt(2), angle + 3 * Math.PI / 4);
         }
     }
 
@@ -52,7 +51,6 @@ namespace RefactorMe
     {
         public static void Draw(int wight, int height, double angleToRotate, Graphics graphics)
         {
-            // angleToRotate пока не используется, но будет использоваться в будущем
             Drawer.Initialize(graphics);
 
             var sz = Math.Min(wight, height);
