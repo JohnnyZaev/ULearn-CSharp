@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Billiards
+﻿namespace Billiards
 {
     public static class BilliardsTask
     {
@@ -12,8 +10,7 @@ namespace Billiards
         /// <returns></returns>
         public static double BounceWall(double directionRadians, double wallInclinationRadians)
         {
-            //TODO
-            return 0.0;
+            return 2 * wallInclinationRadians - directionRadians;
         }
     }
 }
