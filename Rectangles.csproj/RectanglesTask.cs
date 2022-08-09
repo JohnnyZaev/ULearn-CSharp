@@ -18,13 +18,13 @@ namespace Rectangles
 		{
 			if (!AreIntersected(r1, r2))
 				return 0;
-			int left = Math.Max(r1.Left, r2.Left);
-			int top = Math.Max(r1.Top, r2.Top);
-			int right = Math.Min(r1.Right, r2.Right);
-			int bottom = Math.Min(r1.Bottom, r2.Bottom);
+			var left = Math.Max(r1.Left, r2.Left);
+			var top = Math.Max(r1.Top, r2.Top);
+			var right = Math.Min(r1.Right, r2.Right);
+			var bottom = Math.Min(r1.Bottom, r2.Bottom);
 
-			int width = right - left;
-			int height = bottom - top;
+			var width = right - left;
+			var height = bottom - top;
 
 			if (width < 0 || height < 0)
 				return 0;
