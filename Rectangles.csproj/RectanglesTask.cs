@@ -37,6 +37,14 @@ namespace Rectangles
 		// Если прямоугольники совпадают, можно вернуть номер любого из них.
 		public static int IndexOfInnerRectangle(Rectangle r1, Rectangle r2)
 		{
+			if (!AreIntersected(r1, r2))
+				return -1;
+			if (IntersectionSquare(r1, r2) == r1.Width * r1.Height + r2.Width * r2.Height)
+				return 1;
+			if (r1.Top >= r2.Top && r1.Left >= r2.Left && r1.Bottom <= r2.Bottom && r1.Right <= r2.Right)
+				return 0;
+			if (r2.Top >= r1.Top && r2.Left >= r1.Left && r2.Bottom <= r1.Bottom && r2.Right <= r1.Right)
+				return 1;
 			return -1;
 		}
 	}
